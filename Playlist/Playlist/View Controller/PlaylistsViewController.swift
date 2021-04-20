@@ -9,9 +9,10 @@ import UIKit
 
 class PlaylistsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
-    @IBOutlet weak var playlistNameTextField: UITextField!
+    //MARK: - Outlets
     @IBOutlet weak var playlistTableView: UITableView!
     
+    //MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         playlistTableView.delegate = self
@@ -24,16 +25,12 @@ class PlaylistsViewController: UIViewController, UITableViewDelegate, UITableVie
         playlistTableView.reloadData()
     }
     
+    //MARK: - Actions
     @IBAction func addPlaylistButtonTapped(_ sender: Any) {
-        guard let playlistName = playlistNameTextField.text,
-              !playlistName.isEmpty else { return }
-        PlaylistController.shared.createPlaylist(name: playlistName)
-        playlistTableView.reloadData()
-        playlistNameTextField.text = ""
+        presentNewPlaylistAlert()
     }
     
     // MARK: - TableView DataSource Methods
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return PlaylistController.shared.playlists.count
     }
@@ -61,14 +58,38 @@ class PlaylistsViewController: UIViewController, UITableViewDelegate, UITableVie
             tableView.deleteRows(at: [indexPath], with: .fade)
         }
     }
+    
+    //MARK: - Functions
+    func presentNewPlaylistAlert() {
+        
+        let playlistAlert = UIAlertController(title: "New Playlist", message: "Enter new plalist name", preferredStyle: .alert)
+        
+        playlistAlert.addTextField { (textField) in
+            textField.placeholder = "playlist name here..."
+        }
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .default, handler: nil)
+        
+        let addAction = UIAlertAction(title: "Add", style: .default) { (_) in
+            
+            guard let playlistName = playlistAlert.textFields![0].text, !playlistName.isEmpty else {return}
+            
+            PlaylistController.shared.createPlaylist(name: playlistName)
+            self.playlistTableView.reloadData()
+        }
+        
+        playlistAlert.addAction(cancelAction)
+        playlistAlert.addAction(addAction)
+        
+        present(playlistAlert, animated: true)
+    }
 
     // MARK: - Navigation
-
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "toSongList" {
+        if segue.identifier == "toSongListVC" {
             guard let indexPath = playlistTableView.indexPathForSelectedRow,
                   let destination = segue.destination as? SongTableViewController else { return }
             let playlist = PlaylistController.shared.playlists[indexPath.row]
             destination.playlist = playlist        }
     }
-}
+}//End of class

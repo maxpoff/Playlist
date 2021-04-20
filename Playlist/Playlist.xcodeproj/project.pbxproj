@@ -18,6 +18,7 @@
 		7EE9B9CE2588E0D9009D00ED /* Playlist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EE9B9CD2588E0D9009D00ED /* Playlist.swift */; };
 		7EE9B9D62588E178009D00ED /* PlaylistController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EE9B9D52588E178009D00ED /* PlaylistController.swift */; };
 		7EE9B9D92588E36B009D00ED /* PlaylistsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EE9B9D82588E36B009D00ED /* PlaylistsViewController.swift */; };
+		976CDD3D262F201400CBDECC /* SongDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 976CDD3C262F201400CBDECC /* SongDetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		7EE9B9CD2588E0D9009D00ED /* Playlist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Playlist.swift; sourceTree = "<group>"; };
 		7EE9B9D52588E178009D00ED /* PlaylistController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistController.swift; sourceTree = "<group>"; };
 		7EE9B9D82588E36B009D00ED /* PlaylistsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistsViewController.swift; sourceTree = "<group>"; };
+		976CDD3C262F201400CBDECC /* SongDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongDetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,6 +128,7 @@
 			children = (
 				7EE9B9CA2588D6BB009D00ED /* SongTableViewController.swift */,
 				7EE9B9D82588E36B009D00ED /* PlaylistsViewController.swift */,
+				976CDD3C262F201400CBDECC /* SongDetailViewController.swift */,
 			);
 			path = "View Controller";
 			sourceTree = "<group>";
@@ -203,6 +206,7 @@
 				7EE9B9CB2588D6BB009D00ED /* SongTableViewController.swift in Sources */,
 				7EE9B9C12588CFFB009D00ED /* Song.swift in Sources */,
 				7EE9B9A52588CB46009D00ED /* AppDelegate.swift in Sources */,
+				976CDD3D262F201400CBDECC /* SongDetailViewController.swift in Sources */,
 				7EE9B9C62588D3E0009D00ED /* SongController.swift in Sources */,
 				7EE9B9D92588E36B009D00ED /* PlaylistsViewController.swift in Sources */,
 				7EE9B9A72588CB46009D00ED /* SceneDelegate.swift in Sources */,

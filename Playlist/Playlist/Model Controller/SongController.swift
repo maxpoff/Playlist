@@ -19,7 +19,15 @@ class SongController {
     static func deleteSong(song: Song, playlist: Playlist) {
         guard let index = playlist.songs.firstIndex(of: song) else { return }
         playlist.songs.remove(at: index)
-        print("Successfully deleted \(song.title) from \(playlist.name).")
+        print("Successfully deleted \(song.songTitle) from \(playlist.name).")
         PlaylistController.shared.saveToPersistenceStore()
     }
-}
+    
+    static func updateSong(song: Song, newSongTitle: String, newArtist: String) {
+        
+        song.songTitle = newSongTitle
+        song.artist = newArtist
+        
+        PlaylistController.shared.saveToPersistenceStore()
+    }
+}//End of class

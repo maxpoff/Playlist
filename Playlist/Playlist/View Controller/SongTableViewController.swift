@@ -8,31 +8,24 @@
 import UIKit
 
 class SongTableViewController: UITableViewController {
-
-    @IBOutlet weak var songTitleTextField: UITextField!
-    @IBOutlet weak var artistNameTextField: UITextField!
     
-    var playlist: Playlist?
-    
+    //MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
     }
-
-    @IBAction func addSongButtonTapped(_ sender: Any) {
-        guard let songTitle = songTitleTextField.text,
-              !songTitle.isEmpty,
-              let artistName = artistNameTextField.text,
-              !artistName.isEmpty,
-              let playlist = playlist else { return }
-        SongController.createSong(title: songTitle, artist: artistName, playlist: playlist)
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
         tableView.reloadData()
-        songTitleTextField.text = ""
-        artistNameTextField.text = ""
-        songTitleTextField.becomeFirstResponder()
     }
+
+    //MARK: - Properties
+    var playlist: Playlist?
+    
+    //MARK: - Actions
     
     // MARK: - Table view data source
-
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 
         return playlist?.songs.count ?? 0
@@ -45,13 +38,12 @@ class SongTableViewController: UITableViewController {
         
         let song = playlist.songs[indexPath.row]
 
-        cell.textLabel?.text = song.title
+        cell.textLabel?.text = song.songTitle
         cell.detailTextLabel?.text = song.artist
 
         return cell
     }
 
-    // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             guard let playlist = playlist else { return }
@@ -60,4 +52,21 @@ class SongTableViewController: UITableViewController {
             tableView.deleteRows(at: [indexPath], with: .fade)
         }
     }
-}
+    
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        let playlist = self.playlist
+        guard let destinationVC = segue.destination as? SongDetailViewController else {return}
+        destinationVC.playlist = playlist
+        
+        if segue.identifier == "toSongDetailVC" {
+            
+            guard let indexPath = tableView.indexPathForSelectedRow,
+            
+                  let song = playlist?.songs[indexPath.row] else {return}
+            
+            destinationVC.song = song
+        }
+    }
+}//End of class

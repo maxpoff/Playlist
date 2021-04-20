@@ -9,10 +9,11 @@ import Foundation
 
 class PlaylistController {
     
+    //MARK: - Properties
     static let shared = PlaylistController()
-    
     var playlists: [Playlist] = []
     
+    //MARK: - Functions
     func createPlaylist(name: String) {
         let newPlaylist = Playlist(name: name)
         playlists.append(newPlaylist)
@@ -51,4 +52,4 @@ class PlaylistController {
             print("Error decoding our data into playlists: \(error) -- \(error.localizedDescription)")
         }
     }
-}
+}//End of class

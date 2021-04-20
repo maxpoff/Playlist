@@ -9,17 +9,18 @@ import Foundation
 
 class Song: Codable {
     
-    let title: String
-    let artist: String
+    var songTitle: String
+    var artist: String
     
     init(title: String, artist: String) {
-        self.title = title
+        self.songTitle = title
         self.artist = artist
     }
-}
+}//End of class
 
+//MARK: - Extension
 extension Song: Equatable {
     static func == (lhs: Song, rhs: Song) -> Bool {
-        return rhs.title == lhs.title && rhs.artist == lhs.artist
+        return rhs.songTitle == lhs.songTitle && rhs.artist == lhs.artist
     }
-}
+}//End of extension
